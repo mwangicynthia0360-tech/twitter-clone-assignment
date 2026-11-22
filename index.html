@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cynergy-twitter clone app</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<div class="container">
+    <div class="nav">
+        <div class="brand"><h1>Cynergy- Write your Thoughts.</h1></div>
+        <button class="nav-btn" data-action="nav">Home</button>
+        <button class="nav-btn" data-action="nav">Profile</button>
+        <button class="nav-btn" data-action="open-chat">Ask AI</button>
+    </div>
+</div>
+  <main>
+    <section id="home-view">
+        <h1 class="page-view">Home</h1>
+    
+    <div class="compose">
+        <div class="compose-avatar"></div>
+        <div class="compose-main">
+            <textarea name="tweet" id="tweet-input" placeholder="What are your thoughts?"></textarea>
+            <div class="compose-footer">
+                <span id="characters">280</span>
+                <button id="tweet-btn" class="btn" disabled>Post</button>
+            </div>
+        </div>
+    </div>
+           <div id="status" class="status"></div>
+        <div id="feed"></div>
+    </section>
+          <section id="profile-view" hidden></section>
+    </main>
+
+    <aside class="side">
+      <h2>Who to follow</h2>
+      <div id="suggestions"></div>
+    </aside>
+  </div>
+    <button id="chat" data-action="open-chat">AI</button>
+      <section id="chat-panel" hidden placeholder="AI chat">
+    <header>
+      <h1>Ask AI</h1>
+      <button class="link-btn" data-action="close-chat">Close</button>
+    </header>
+    <div id="chat-log"></div>
+    <div class="chat-input">
+      <input id="chat-text" type="text" placeholder="Ask about any post">
+      <button id="chat-send" class="btn">Send</button>
+    </div>
+  </section>
+    <script src="script.js"></script>
+</body>
+</html>
