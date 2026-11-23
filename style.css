@@ -220,7 +220,7 @@ main {
     height: 58px;
     border: 3px solid #ffffff;
     border-radius: 50%;
-    background: var(--orange);
+    background: color orange;
     color: #ffffff;
     box-shadow: 0 8px 24px rgba(11, 31, 58, 0.25);
     font-weight: 900;

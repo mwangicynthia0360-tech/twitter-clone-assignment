@@ -1,26 +1,20 @@
-/* =====================================================
-   STEP 1: Configuration
-   ===================================================== */
+
 const API = "https://jsonplaceholder.typicode.com";
 
-// Paste your OpenRouter key here (https://openrouter.ai/keys).
-// For a class project this is fine; never publish a real key publicly.
+
 const OPENROUTER_KEY = "";
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 const MODEL = "openrouter/free";
 
-// OPTIONAL avatars: fill these from the API page you chose on RapidAPI.
-// Leave key empty and the app uses initials in a colored circle.
+
 const AVATAR = {
   key: "",
   host: "",
-  // Return the request URL for a user. Adapt to the API you chose.
+ 
   url: (user) => "",
 };
 
-/* =====================================================
-   STEP 2: Application state (one object, one source of truth)
-   ===================================================== */
+
 const state = {
   users: [],
   posts: [],
@@ -44,9 +38,7 @@ function esc(s) {
 }
 const userOf = (id) => state.users.find((u) => u.id === id);
 
-/* =====================================================
-   STEP 3: Loading data (Promise.all, grouping comments)
-   ===================================================== */
+
 async function getJSON(path) {
   const res = await fetch(API + path);
   if (!res.ok) throw new Error(`Request failed (${res.status}) for ${path}`);
@@ -75,9 +67,7 @@ async function init() {
   }
 }
 
-/* =====================================================
-   STEP 4: Avatars with fallback to initials
-   ===================================================== */
+
 async function loadAvatars() {
   if (!AVATAR.key) return; // no key: initials only
   await Promise.allSettled(state.users.map(async (u) => {
@@ -98,10 +88,7 @@ function avatar(user, size = "") {
   return `<div class="avatar ${color} ${size}">${esc(initials)}</div>`;
 }
 
-/* =====================================================
-   STEP 5: Rendering posts, feed, suggestions, profile
-   ===================================================== */
-// Deterministic fake counts so the numbers stay stable between renders.
+
 const baseLikes = (p) => (p.id * 7) % 23;
 const baseRetweets = (p) => (p.id * 3) % 11;
 
@@ -186,9 +173,7 @@ function render() {
   renderSuggestions();
 }
 
-/* =====================================================
-   STEP 6: Compose box with 280 character limit
-   ===================================================== */
+
 $("tweet-input").addEventListener("input", () => {
   const left = 280 - $("tweet-input").value.length;
   $("characters").textContent = left;
@@ -206,10 +191,7 @@ $("tweet-btn").addEventListener("click", () => {
   render();
 });
 
-/* =====================================================
-   STEP 7: Click handling (event delegation)
-   One listener handles every button, even ones created later.
-   ===================================================== */
+
 document.addEventListener("click", (e) => {
   const el = e.target.closest("[data-action]");
   if (!el) return;
@@ -235,9 +217,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
-/* =====================================================
-   STEP 8: AI chat with OpenRouter
-   ===================================================== */
+
 function addMsg(role, text) {
   const div = document.createElement("div");
   div.className = "msg " + role;
